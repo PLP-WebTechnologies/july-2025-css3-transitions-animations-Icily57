@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fun interactive games website with leaderboard, animations, and mini JavaScript-powered games.">
+  <meta name="keywords" content="games, javascript, css animations, interactive, leaderboard, fun, web development project">
+  <meta name="author" content="Your Name">
+  <title>🎮 GameZone - Play & Compete</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Leaderboard -->
+  <header>
+    <h1>🏆 GameZone Leaderboard</h1>
+    <ul id="leaderboard"></ul>
+  </header>
+
+  <!-- Main content -->
+  <main>
+    <section class="intro">
+      <h2>Welcome to GameZone 🎉</h2>
+      <p>Play fun interactive games, score points, and climb the leaderboard!</p>
+    </section>
+
+    <section class="games-grid">
+  <!-- Game 1 -->
+  <div class="game-card" id="guessCard">
+    <h3>🎲 Guess the Number</h3>
+    <p>Try to guess the secret number between 1–10.</p>
+    <button onclick="startGuessGame()">Play</button>
+    <div id="guess-game"></div>
+  </div>
+
+  <!-- Game 2 -->
+  <div class="game-card" id="rpsCard">
+    <h3>✂️ Rock Paper Scissors</h3>
+    <p>Challenge the computer and see if you win!</p>
+    <button onclick="startRPSGame()">Play</button>
+    <div id="rps-game"></div>
+  </div>
+
+  <!-- Game 3 -->
+  <div class="game-card" id="mathCard">
+    <h3>🧠 Quick Math</h3>
+    <p>Answer simple math questions as fast as you can.</p>
+    <button onclick="startMathGame()">Play</button>
+    <div id="math-game"></div>
+  </div>
+
+  <!-- Game 4 -->
+  <div class="game-card" id="scrambleCard">
+    <h3>🔤 Word Scramble</h3>
+    <p>Unscramble the letters to form a word.</p>
+    <button onclick="startWordScramble()">Play</button>
+    <div id="scramble-game"></div>
+  </div>
+
+  <!-- Game 5 -->
+  <div class="game-card" id="clickCard">
+    <h3>🖱️ Click Speed</h3>
+    <p>How many times can you click in 5 seconds?</p>
+    <button onclick="startClickSpeed()">Play</button>
+    <div id="click-game"></div>
+  </div>
+
+  <!-- Game 6 -->
+  <div class="game-card" id="memoryCard">
+    <h3>🎯 Memory Match</h3>
+    <p>Flip and match cards as fast as you can.</p>
+    <button onclick="startMemoryGame()">Play</button>
+    <div id="memory-game"></div>
+  </div>
+</section>
+
+  </main>
+
+  <footer>
+    <p>🎮 Built with ❤️ using CSS & JavaScript | GameZone 2025</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

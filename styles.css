@@ -1,0 +1,280 @@
+/* ===========================
+   GameZone — Restored + Bigger Cards + Responsive (3/2/1)
+   =========================== */
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Theme variables */
+:root{
+  --bg1:#1f1c2c;         /* deep violet */
+  --bg2:#928dab;         /* soft grey-purple */
+  --glass:rgba(255,255,255,.10);
+  --glass-2:rgba(255,255,255,.18);
+  --text:#ffffff;
+  --accent:#ffdf6c;      /* gold for headings */
+  --btn1:#ff5f6d;
+  --btn2:#ffc371;
+  --card1:#6a11cb;
+  --card2:#2575fc;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+/* Page */
+html, body { height: 100%; }
+body{
+  font-family: "Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header / Leaderboard (sticky & restored) */
+header{
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: saturate(120%) blur(10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+  padding: 1.2rem 1rem 1rem;
+  text-align: center;
+}
+header h1{
+  font-size: 1.9rem; letter-spacing: .5px; margin-bottom: .6rem;
+}
+#leaderboard{
+  list-style: none;
+  display: flex; justify-content: center; flex-wrap: wrap; gap: .6rem;
+}
+#leaderboard li{
+  background: var(--glass-2);
+  border: 1px solid rgba(255,255,255,.15);
+  padding: .45rem .8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  transition: transform .25s ease, background .25s ease;
+}
+#leaderboard li:hover{ transform: translateY(-2px); background: rgba(255,255,255,.22); }
+
+/* Main */
+main{ flex: 1; padding: 2rem 1rem 2.5rem; }
+.intro{
+  text-align: center; max-width: 900px; margin: 0 auto 2rem;
+}
+.intro h2{ font-size: 2.1rem; color: var(--accent); margin-bottom: .4rem; }
+.intro p{ opacity: .95; }
+
+/* Games Grid — MAX 3, then 2, then 1 */
+.games-grid{
+  width: 100%;
+  max-width: 1280px;      /* centers and prevents ultra-wide stretching */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(320px, 1fr)); /* larger cards */
+  gap: 2rem;
+  padding: .25rem;
+}
+
+/* Breakpoints to 2 and 1 columns */
+@media (max-width: 1100px){
+  .games-grid{ grid-template-columns: repeat(2, minmax(300px, 1fr)); }
+}
+@media (max-width: 680px){
+  .games-grid{ grid-template-columns: 1fr; }
+}
+
+/* Game Card — Bigger, Glassmorphism, Restored style */
+.game-card{
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.35)),
+    linear-gradient(135deg, var(--card1), var(--card2));
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 20px;
+  padding: 2rem;                 /* bigger padding */
+  min-height: 420px;             /* bigger card height */
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, filter .35s ease;
+}
+
+/* subtle animated shine */
+.game-card::after{
+  content:"";
+  position:absolute; inset:-40%;
+  background: radial-gradient(ellipse at top left, rgba(255,255,255,.12), transparent 45%);
+  transform: rotate(10deg);
+  pointer-events:none;
+}
+
+.game-card:hover{
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  filter: saturate(110%);
+}
+
+.game-card h3{
+  font-size: 1.35rem; margin-bottom: .35rem;
+}
+.game-card p{
+  opacity: .95; margin-bottom: 1rem;
+}
+.game-card > * + *{ margin-top: .75rem; } /* consistent vertical rhythm */
+
+/* Buttons — larger & lively */
+.game-card button{
+  background: linear-gradient(45deg, var(--btn1), var(--btn2));
+  color: #111;                   /* better contrast on warm gradient */
+  border: none;
+  padding: .9rem 1.3rem;         /* larger click target */
+  font-weight: 800;
+  letter-spacing: .2px;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0,0,0,.35);
+  transition: transform .18s ease, box-shadow .25s ease, filter .25s ease;
+}
+.game-card button:hover{ transform: translateY(-2px) scale(1.03); box-shadow: 0 12px 28px rgba(0,0,0,.38); }
+.game-card button:active{ transform: translateY(0) scale(.98); }
+
+/* Inputs — larger */
+.game-card input{
+  width: 100%;
+  max-width: 280px;
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,.2);
+  color: var(--text);
+  padding: .8rem 1rem;
+  border-radius: 12px;
+  outline: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25) inset, 0 4px 14px rgba(0,0,0,.18);
+  transition: border-color .25s ease, box-shadow .25s ease, transform .15s ease;
+}
+.game-card input:focus{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255,223,108,.25), 0 6px 18px rgba(0,0,0,.28) inset;
+  transform: translateY(-1px);
+}
+
+/* Game-specific helpers (optional) */
+#rps-game, #guess-game, #math-game,
+#scramble-game, #click-game, #memory-game{
+  margin-top: .6rem;
+}
+
+/* Footer (restored) */
+footer{
+  background: rgba(0,0,0,.6);
+  padding: 1rem;
+  text-align: center;
+  font-size: .95rem;
+  box-shadow: 0 -8px 20px rgba(0,0,0,.35);
+}
+
+/* Simple fade-in on load */
+@keyframes fadeInUp{
+  from{ opacity: 0; transform: translateY(10px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+.game-card{ animation: fadeInUp .55s ease both; }
+.games-grid .game-card:nth-child(2){ animation-delay: .06s; }
+.games-grid .game-card:nth-child(3){ animation-delay: .12s; }
+.games-grid .game-card:nth-child(4){ animation-delay: .18s; }
+.games-grid .game-card:nth-child(5){ animation-delay: .24s; }
+.games-grid .game-card:nth-child(6){ animation-delay: .30s; }
+
+/* ===========================
+   Different Animations
+   =========================== */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 8px 18px rgba(0,0,0,.35); }
+  50% { box-shadow: 0 0 25px #ffdf6c; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes tilt {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(2deg); }
+  75% { transform: rotate(-2deg); }
+}
+
+/* Classes for animations */
+.animate-shake   { animation: shake 0.6s ease; }
+.animate-bounce  { animation: bounce 0.8s ease; }
+.animate-glow    { animation: glow 1s ease; }
+.animate-spin    { animation: spin 1s linear; }
+.animate-pulse   { animation: pulse 0.8s ease; }
+.animate-tilt    { animation: tilt 0.7s ease; }
+
+
+/* Hover triggers different animations per card */
+#guessCard:hover     { animation: shake 0.6s ease; }
+#rpsCard:hover       { animation: bounce 0.8s ease; }
+#mathCard:hover      { animation: glow 1s ease; }
+#scrambleCard:hover  { animation: spin 1s linear; }
+#clickCard:hover     { animation: pulse 0.8s ease; }
+#memoryCard:hover    { animation: tilt 0.7s ease; }
+
+
+/* ===========================
+   Animated Gradient Background
+   =========================== */
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #1f1c2c, #2575fc, #6a11cb, #928dab);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  overflow: hidden; /* ensures particles don't scroll */
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===========================
+   Floating Particles
+   =========================== */
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  animation: floatUp linear infinite;
+  bottom: -20px;
+  pointer-events: none; /* ensures clicks pass through */
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 0; }
+  25%  { opacity: 1; }
+  75%  { opacity: 1; }
+  to   { transform: translateY(-110vh); opacity: 0; }
+}
+
